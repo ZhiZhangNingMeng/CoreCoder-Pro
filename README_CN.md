@@ -59,4 +59,4 @@ streamlit run app.py
 本项目是由开源项目 CoreCoder 二次开发而来。
 特别感谢原作者何宇峰开源的 Agent 核心引擎。
 
-本分支（CoreCoder-Pro）站在巨人的肩膀上，保留了其强大的核心 Agent 路由与工具调用调度循环，本项目主要核心文件继承自CoreCoder，在其框架上进行了补充升级，想要了解更多关于CoreCoder的信息，请移步至原作者开源项目`[CoreCoder](https://github.com/he-yufeng/CoreCoder)`。
+本分支（CoreCoder-Pro）站在巨人的肩膀上，保留了其强大的核心 Agent 路由与工具调用调度循环，本项目主要核心文件继承自CoreCoder，在其框架上进行了补充升级，想要了解更多关于CoreCoder的信息，请移步至原作者开源项目[CoreCoder](https://github.com/he-yufeng/CoreCoder)。
