@@ -52,7 +52,6 @@ CORECODER_API_KEY= your_API_Key
 
 CORECODER_MODEL=deepseek-v4-flash
 ```
-
 ### 3. 启动网页端产品
 在终端中运行以下命令，系统会自动在浏览器中弹出现代化的 Web 可视化交互界面：
 ```bash
