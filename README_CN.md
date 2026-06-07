@@ -42,6 +42,7 @@ scipy>=1.10.0
 # RAG 轻量级本地知识库 (Vector Database)
 chromadb>=0.4.20
 ```
+
 ### 2. 配置环境凭证
 在项目根目录下创建一个 `.env` 文件，配置你的大模型 API 密钥（支持任意 OpenAI 兼容接口，如 Kimi、DeepSeek、Qwen 等）：
 ```bash
@@ -52,6 +53,7 @@ CORECODER_API_KEY= your_API_Key
 
 CORECODER_MODEL=deepseek-v4-flash
 ```
+
 ### 3. 启动网页端产品
 在终端中运行以下命令，系统会自动在浏览器中弹出现代化的 Web 可视化交互界面：
 ```bash
