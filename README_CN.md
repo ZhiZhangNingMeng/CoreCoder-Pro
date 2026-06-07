@@ -45,8 +45,12 @@ chromadb>=0.4.20
 ### 2. 配置环境凭证
 在项目根目录下创建一个 `.env` 文件，配置你的大模型 API 密钥（支持任意 OpenAI 兼容接口，如 Kimi、DeepSeek、Qwen 等）：
 ```bash
-OPENAI_API_KEY=你的API_KEY
-OPENAI_BASE_URL=你的API代理地址（如适用）
+#以deepseek为例
+CORECODER_BASE_URL=https://api.deepseek.com
+
+CORECODER_API_KEY= your_API_Key
+
+CORECODER_MODEL=deepseek-v4-flash
 ```
 
 ### 3. 启动网页端产品
