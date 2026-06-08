@@ -3,7 +3,46 @@
 本项目是对 Agent 架构 CoreCoder 的二次开发与产品化实践。该架构由作者何宇峰从 Claude Code 约 51 万行源码中提炼出 1400 行核心代码构建而成，原生聚焦于代码编辑场景。本项目在此基础上进行客户端优化与业务逻辑扩充，将其升级为一款具备更强数据分析能力与知识检索能力的可视化 AI 助手。
 
 ---
+## 核心设计模式与架构
+在完整继承 CoreCoder 核心模块的基础上，针对复杂数据流与知识流进行了定制化扩充，同时对原有功能进行了调优。
+### 1. 系统逻辑分层
 
+| 架构层级 (Layer) | 核心模块 / 设计模式 | 功能实现与优化点 | 对应核心文件 |
+| :--- | :--- | :--- | :--- |
+| **交互表现层** | **可视化 Web UI** | 基于 Streamlit 的Web端展示、流式打字机渲染与工具调用动态折叠。 | `app.py` |
+| **中枢控制层** | **Agent 调度循环** | 主从架构，支持多工具并行调用与子代理隔离。 | `agent.py`<br>`tools/agent.py` |
+| | **三层上下文压缩** | 阶梯式内存监控，支持冗余截断与 LLM 摘要降级。 | `context.py` |
+| | **会话持久化** | 会话记录本地保存与记忆摘要。 | `session.py` |
+| **安全执行层** | **动态 Python 沙盒** | 进程隔离执行，按需动态拉起 Pandas/NumPy 进行安全数据计算。 | `tools/data_analysis.py` |
+| | **安全风控拦截** | 危险命令人工确认与跨端字符编码校验。 | `tools/bash.py` |
+| **数据引擎层** | **本地 RAG 引擎** | ChromaDB 向量化存储与文档切片，支持私有文件检索。 | `rag_storage.py` |
+
+### 2. 项目文件目录
+
+```text
+pro_corecoder/
+├── app.py                      Web 端可视化交互启动口
+└── corecoder/
+    ├── cli.py                  REPL + 命令行交互入口 (优化)                  
+    ├── agent.py                Agent 循环 + 并行调度      
+    ├── llm.py                  流式客户端 + 重试机制          
+    ├── context.py              上下文三层压缩机制                    
+    ├── session.py              会话保存/恢复                
+    ├── prompt.py               系统提示词
+    ├── rag_storage.py          本地 ChromaDB 向量知识引擎 (新增)              
+    ├── config.py               环境变量配置                 
+    └── tools/
+        ├── bash.py             Shell执行 + 安全防护 + cd 追踪 (优化)    
+        ├── edit.py             搜索替换 + 文件diff             
+        ├── read.py             文件读取                  
+        ├── write.py            文件写入                    
+        ├── glob_tool.py        文件搜索                   
+        ├── grep.py             文件内容正则搜索
+        ├── data_analysis.py    独立 Python 隔离沙盒 (新增)
+        ├── knowledge_search.py 本地私有知识库检索 (新增)                      
+        └── agent.py            子代理生成                  
+```
+---
 ## ✨ 产品核心升级
 
 ### 1. 交互产品化：现代 Web 可视化界面
