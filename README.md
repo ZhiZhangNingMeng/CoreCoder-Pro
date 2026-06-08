@@ -13,8 +13,21 @@ The original architecture used a command-line interface, making it inconvenient 
 When processing data, the original model repeatedly called terminal bash scripts for computation, leading to frequent communication between the terminal and cloud APIs and high Token consumption. This project encapsulates a dynamic Python sandbox and adds a new "data_analysis" tool, allowing the Agent to autonomously generate and execute scripts in an isolated environment using built‑in Python functions (such as Pandas, NumPy, etc.). This significantly reduces communication overhead during data cleaning and statistical processing, achieving more efficient and convenient data handling.
 
 ### 3. Enhanced Information Retrieval: Lightweight Local RAG
-The original Agent lacked up-to-date professional knowledge in specific vertical domains, leading to insufficient information retrieval capabilities. This project locally integrates the ChromaDB vector database engine to build a lightweight RAG (Retrieval-Augmented Generation) feature. It supports slicing and retrieving long texts and professional research reports, effectively improving the accuracy and credibility of answers in vertical scenarios. Meanwhile, document vectorization is executed completely locally, avoiding the leakage risks of sending original files to the cloud and fully protecting user privacy.
+The original Agent lacked up-to-date professional knowledge in specific vertical domains, leading to insufficient information retrieval capabilities. This project adds a new "rag_storage" tool, locally integrating the ChromaDB vector database engine to build lightweight RAG functionality. It supports chunk‑based retrieval of long texts and professional reports, effectively improving answer accuracy and credibility in vertical scenarios. At the same time, all file vectorization is performed locally, avoiding the risk of data leakage from sending original files to the cloud and fully protecting user privacy.
 
+When using it, first run “/ingest” to feed local private documents to the Agent for local chunking and vectorization. After that, you can perform chunk‑based searching and analysis on the content.
+```text
+# Test Case  
+# CyberCoder Top‑Secret File  
+
+## 1. Core Mascot Settings  
+The official mascot of the CyberCoder framework is a cyborg pet named "Quantum Orange Cat". It was born late one night in 2024, accidentally created by a programmer staying up late to fix bugs, triggered by a memory leak.  
+- **Favorite food**: Cyber Dried Fish  
+- **Catchphrase**: "Meow meow meow, your code has panicked again!"  
+
+## 2. Hidden Command  
+In the ultimate version of CyberCoder, if the user types "Open Sesame" in the terminal, the system will automatically play an 8‑bit style "Lullaby" to help the programmer fall asleep.
+```
 ### 4. System Security Reinforcement: Baseline Risk Control & Encoding Fault Tolerance
 The original framework executed file deletion commands directly, posing the risk of accidentally deleting core files. This project introduces a Human-in-the-Loop (HITL) review mechanism: when the Agent attempts a deletion operation, a confirmation dialog pops up on the Web frontend, reducing accidental deletions. Additionally, it fixes cross-OS interaction defects in the original system by introducing mandatory UTF-8 overwriting and error replacement mechanisms (`errors="replace"`), resolving crash vulnerabilities caused by GBK encoding.
 
