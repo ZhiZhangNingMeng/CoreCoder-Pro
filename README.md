@@ -8,9 +8,11 @@ This project is a secondary development and productization practice based on the
 
 ### 1. Interactive Productization: Modern Web Visual Interface
 The original architecture used a command-line interface, making it inconvenient to browse chat history and context. Furthermore, the Agent's thought processes and tool-call records took up massive console space, making them hard to review. This project builds a Web interactive frontend based on Streamlit, implementing streaming output, dynamic displays of tool calls with visual collapsible panels, and a one-click history clearing feature, significantly enhancing the user experience.
+<img width="8802" height="4046" alt="主页面eng" src="https://github.com/user-attachments/assets/12f79038-3f90-4bf1-b39d-14f47d1a77f6" />
 
 ### 2. Data Processing Cost Reduction & Efficiency Enhancement: Dynamic Python Sandbox
 When processing data, the original model repeatedly called terminal bash scripts for computation, leading to frequent communication between the terminal and cloud APIs and high Token consumption. This project encapsulates a dynamic Python sandbox and adds a new "data_analysis" tool, allowing the Agent to autonomously generate and execute scripts in an isolated environment using built‑in Python functions (such as Pandas, NumPy, etc.). This significantly reduces communication overhead during data cleaning and statistical processing, achieving more efficient and convenient data handling.
+<img width="8802" height="4024" alt="数据分析eng" src="https://github.com/user-attachments/assets/d5b499f1-e98e-4936-bc38-78507986ddd9" />
 
 ### 3. Enhanced Information Retrieval: Lightweight Local RAG
 The original Agent lacked up-to-date professional knowledge in specific vertical domains, leading to insufficient information retrieval capabilities. This project adds a new "rag_storage" tool, locally integrating the ChromaDB vector database engine to build lightweight RAG functionality. It supports chunk‑based retrieval of long texts and professional reports, effectively improving answer accuracy and credibility in vertical scenarios. At the same time, all file vectorization is performed locally, avoiding the risk of data leakage from sending original files to the cloud and fully protecting user privacy.
@@ -28,8 +30,11 @@ The official mascot of the CyberCoder framework is a cyborg pet named "Quantum O
 ## 2. Hidden Command  
 In the ultimate version of CyberCoder, if the user types "Open Sesame" in the terminal, the system will automatically play an 8‑bit style "Lullaby" to help the programmer fall asleep.
 ```
+<img width="8802" height="4054" alt="rageng" src="https://github.com/user-attachments/assets/73f89639-499c-48c2-bfa6-977bf1272e5e" />
+
 ### 4. System Security Reinforcement: Baseline Risk Control & Encoding Fault Tolerance
 The original framework executed file deletion commands directly, posing the risk of accidentally deleting core files. This project introduces a Human-in-the-Loop (HITL) review mechanism: when the Agent attempts a deletion operation, a confirmation dialog pops up on the Web frontend, reducing accidental deletions. Additionally, it fixes cross-OS interaction defects in the original system by introducing mandatory UTF-8 overwriting and error replacement mechanisms (`errors="replace"`), resolving crash vulnerabilities caused by GBK encoding.
+<img width="8802" height="4024" alt="删除eng" src="https://github.com/user-attachments/assets/282d80ef-b503-4a01-83ca-21ea3a021eee" />
 
 ---
 
