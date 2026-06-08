@@ -64,4 +64,4 @@ streamlit run app.py
 This project is a secondary development derived from the open-source project CoreCoder.
 Special thanks to the original author He Yufeng for open-sourcing the core Agent engine.
 
-This branch (CoreCoder-Pro) stands on the shoulders of giants, retaining its powerful core Agent routing and tool-call scheduling loop. The main core files of this project are inherited from CoreCoder, with supplementary upgrades built upon its framework. To learn more about CoreCoder, please visit the original author's open-source project [CoreCoder](https://github.com/he-yufeng/CoreCoder).
+This branch (CoreCoder-Pro) stands on the shoulders of giants, retaining its powerful core Agent routing and tool-call scheduling loop. The main core files of this project are inherited from CoreCoder, with supplementary upgrades built upon its framework. Newly added code follows the original architectural rules and is saved and uploaded according to the prescribed paths. To learn more about CoreCoder, please visit the original author's open-source project [CoreCoder](https://github.com/he-yufeng/CoreCoder).
