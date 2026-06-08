@@ -8,20 +8,35 @@
 
 ### 1. 交互产品化：现代 Web 可视化界面
 原生架构采用命令行形式，对话记录与上下文的浏览较为不便，且 Agent 的思考过程与工具调用记录会占据大量对话框空间，翻阅查找困难。本项目基于 Streamlit 构建 Web 交互前端，实现了流式输出效果，增加了工具调用的动态显示与可视化折叠面板，并支持一键清空历史记录，显著提升用户体验。
-
-<img width="2670" height="1228" alt="image" src="https://github.com/user-attachments/assets/1608cb57-61a4-4ce9-91e6-2e323b877cb5" />
-
+<img width="8812" height="4044" alt="主页面" src="https://github.com/user-attachments/assets/bf83f96d-2f36-4e90-8513-af982c0d4478" />
 
 ### 2. 数据处理降本增效：封装动态 Python 沙盒
-原生模型在处理数据时，会反复调用终端 bash 脚本进行计算操作，导致终端与云端 API 频繁通信，Token 消耗量较大。本项目通过封装动态 Python 沙盒，新增 “data_analysis” 工具，允许 Agent 自主生成并在隔离环境中调用 Python 内置函数（如 Pandas、NumPy）执行脚本，大幅降低数据清洗与统计过程中的通信链路开销，实现更高效便捷的数据处理。
-<img width="2670" height="1228" alt="image" src="https://github.com/user-attachments/assets/19714023-d9e9-4569-8536-68ff817bb3ad" />
+原模型在处理数据时，会反复调用终端 bash 脚本进行计算操作，导致终端与云端 API 频繁通信，Token 消耗量较大。本项目通过封装动态 Python 沙盒，新增 “data_analysis” 工具，允许 Agent 自主生成并在隔离环境中调用 Python 内置函数（如 Pandas、NumPy 等）执行脚本，大幅降低数据清洗与统计过程中的通信链路开销，实现更高效便捷的数据处理。
+<img width="8802" height="4026" alt="数据分析" src="https://github.com/user-attachments/assets/cacef5e7-f221-49a8-b447-a8b782eb4fdf" />
 
 
 ### 3. 信息检索能力增强：轻量化本地 RAG 检索
-原生 Agent 在特定垂直领域的专业知识储备无法及时更新，信息检索能力存在不足。本项目本地集成 ChromaDB 向量数据库引擎，构建轻量级 RAG 功能，支持对长文本及专业研报进行切片检索，有效提升垂直场景下的回答精度与可信度。同时，文件的向量化处理完全在本地执行，避免原始文件向云端发送带来的泄密风险，充分保护用户隐私。
+原生 Agent 在特定垂直领域的专业知识储备无法及时更新，信息检索能力存在不足。本项目新增 “rag_storage” 工具，本地集成 ChromaDB 向量数据库引擎，构建起轻量级 RAG 功能，支持对长文本及专业研报进行切片检索，有效提升垂直场景下的回答精度与可信度。同时，文件的向量化处理完全在本地执行，避免原始文件向云端发送带来的泄密风险，充分保护用户隐私。
+
+在使用时，先使用 “/ingest” 将本地私有文档喂给Agent，进行本地切片与向量化，随后便可以根据内容进行切片搜索与分析。
+```text
+#测试用例
+#  CyberCoder绝密档案
+
+## 1. 核心吉祥物设定
+CyberCoder 框架的官方吉祥物是一只名叫“量子橘猫”的赛博宠物。它诞生于 2024 年的某个深夜，由一位熬夜写 Bug 的程序员意外触发的内存泄漏所创造。
+- **最喜欢的食物**：赛博小鱼干（Cyber Dried Fish）
+- **口头禅**：“喵喵喵，你的代码又 Panic 了！”
+
+## 2. 隐藏指令
+在 CyberCoder 的终极版本中，如果用户在终端输入“芝麻开门”，系统将会自动播放一首 8-bit 风格的《摇篮曲》，帮助程序员入睡。
+```
+<img width="8802" height="4014" alt="rag" src="https://github.com/user-attachments/assets/16efa876-0c38-44fb-9be7-f9b2e2a4f0db" />
+
 
 ### 4. 系统安全加固：底线风控与编码容错
 原生框架在执行文件删除命令时会直接执行，存在误删核心文件的风险。本项目引入人工审查机制：当 Agent 希望执行删除操作时，Web 端会弹出询问窗口，减少误删事件发生。同时，修复了原生系统在不同操作系统下交互的缺陷，引入 UTF-8 强制覆写与错误替换机制，解决了 GBK 编码导致的崩溃漏洞。
+<img width="8802" height="4036" alt="删除" src="https://github.com/user-attachments/assets/aaa7efa5-82c7-45a9-bb94-2632f682b8e4" />
 
 ---
 
@@ -69,4 +84,4 @@ streamlit run app.py
 本项目是由开源项目 CoreCoder 二次开发而来。
 特别感谢原作者何宇峰开源的 Agent 核心引擎。
 
-本分支（CoreCoder-Pro）站在巨人的肩膀上，保留了其强大的核心 Agent 路由与工具调用调度循环，本项目主要核心文件继承自CoreCoder，在其框架上进行了补充升级，想要了解更多关于CoreCoder的信息，请移步至原作者开源项目[CoreCoder](https://github.com/he-yufeng/CoreCoder)。
+本分支（CoreCoder-Pro）站在巨人的肩膀上，保留了其强大的核心 Agent 路由与工具调用调度循环，本项目主要核心文件继承自CoreCoder，在其框架上进行了补充升级，新增代码遵循了原有架构规则，并按照其规定路径保存上传。想要了解更多关于CoreCoder的信息，请移步至原作者开源项目[CoreCoder](https://github.com/he-yufeng/CoreCoder)。
