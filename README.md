@@ -3,6 +3,47 @@
 This project is a secondary development and productization practice based on the CoreCoder agent architecture. The original architecture, distilled from approximately 510,000 lines of Claude Code source code down to 1,400 core lines by author He Yufeng, originally focused on code editing scenarios. This project optimizes the client side and expands the business logic, upgrading it into a visual AI assistant with stronger data analysis and knowledge retrieval capabilities.
 
 ---
+## 🧰 Core Design Patterns and Architecture
+Based on a complete inheritance of the CoreCoder core modules, this project introduces customized extensions for complex data and knowledge flows, while also tuning the original functionality.
+
+### 1. System Logic Layering
+
+| Architecture Layer | Core Module / Design Pattern | Function Implementation & Optimization | Corresponding Core File |
+| :--- | :--- | :--- | :--- |
+| **Interaction & Presentation Layer** | **Visual Web UI** | Streamlit-based web display, streaming typewriter rendering, and dynamic collapsible tool calls. | `app.py` |
+| **Orchestration & Control Layer** | **Agent Scheduling Loop** | Master‑slave architecture supporting parallel tool calls and sub‑agent isolation. | `agent.py`<br>`tools/agent.py` |
+| | **Three‑Tier Context Compression** | Staged memory monitoring with redundant truncation and LLM‑based summarization fallback. | `context.py` |
+| | **Session Persistence** | Local session saving and memory summarization. | `session.py` |
+| **Security & Execution Layer** | **Dynamic Python Sandbox** | Process‑isolated execution, on‑demand dynamic invocation of Pandas/NumPy for safe data computation. | `tools/data_analysis.py` |
+| | **Security Risk Control** | Human confirmation for dangerous commands and cross‑platform character encoding validation. | `tools/bash.py` |
+| **Data Engine Layer** | **Local RAG Engine** | ChromaDB vector storage and document chunking, supporting private file retrieval. | `rag_storage.py` |
+
+### 2. Project File Directory
+
+```text
+pro_corecoder/
+├── app.py                      Web‑side visual interaction entry point
+└── corecoder/
+    ├── cli.py                  REPL + command line interaction entry (optimized)                  
+    ├── agent.py                Agent loop + parallel scheduling      
+    ├── llm.py                  Streaming client + retry mechanism          
+    ├── context.py              Three‑tier context compression mechanism                    
+    ├── session.py              Session save/restore                
+    ├── prompt.py               System prompt
+    ├── rag_storage.py          Local ChromaDB vector knowledge engine (new)              
+    ├── config.py               Environment variable configuration                 
+    └── tools/
+        ├── bash.py             Shell execution + security protection + cd tracking (optimized)    
+        ├── edit.py             Search & replace + file diff             
+        ├── read.py             File reading                  
+        ├── write.py            File writing                    
+        ├── glob_tool.py        File search                   
+        ├── grep.py             File content regex search
+        ├── data_analysis.py    Standalone Python isolation sandbox (new)
+        ├── knowledge_search.py Local private knowledge base retrieval (new)                      
+        └── agent.py            Sub‑agent generation
+```
+---
 
 ## ✨ Core Product Upgrades
 
