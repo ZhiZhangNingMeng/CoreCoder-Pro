@@ -48,8 +48,9 @@ pro_corecoder/
 ## ✨ Core Product Upgrades
 
 ### 1. Interactive Productization: Modern Web Visual Interface
-The original architecture used a command-line interface, making it inconvenient to browse chat history and context. Furthermore, the Agent's thought processes and tool-call records took up massive console space, making them hard to review. This project builds a Web interactive frontend based on Streamlit, implementing streaming output, dynamic displays of tool calls with visual collapsible panels, and a one-click history clearing feature, significantly enhancing the user experience.
-<img width="8802" height="4046" alt="主页面eng" src="https://github.com/user-attachments/assets/12f79038-3f90-4bf1-b39d-14f47d1a77f6" />
+The original architecture used a command-line interface, making it inconvenient to browse chat history and context. Furthermore, the Agent's thought processes and tool-call records took up massive console space, making them hard to review. This project builds a web-based interactive frontend using Streamlit, achieving a streaming output effect, adding dynamic display of tool calls with a visual collapsible panel, and supporting session saving, viewing of saved conversations, and clearing of chat history, thereby significantly improving the user experience.
+<img width="8802" height="4058" alt="主页面eng优化" src="https://github.com/user-attachments/assets/2931444b-9e8c-49e2-9e35-7671f7b7ae32" />
+
 
 ### 2. Data Processing Cost Reduction & Efficiency Enhancement: Dynamic Python Sandbox
 When processing data, the original model repeatedly called terminal bash scripts for computation, leading to frequent communication between the terminal and cloud APIs and high Token consumption. This project encapsulates a dynamic Python sandbox and adds a new "data_analysis" tool, allowing the Agent to autonomously generate and execute scripts in an isolated environment using built‑in Python functions (such as Pandas, NumPy, etc.). This significantly reduces communication overhead during data cleaning and statistical processing, achieving more efficient and convenient data handling.
